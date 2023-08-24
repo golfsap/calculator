@@ -14,6 +14,7 @@ const _subtract = document.getElementById("subtract");
 const _multiply = document.getElementById("multiply");
 const _divide = document.getElementById("divide");
 const _equals = document.getElementById("equals");
+const _clear = document.getElementById("clear");
 
 const display = document.getElementById("display");
 const numbers = document.querySelectorAll(".num");
@@ -23,7 +24,7 @@ const operators = document.querySelectorAll(".operator");
 let num1 = '';
 let num2 = '';
 let op = '';
-let eval = '';
+let eval = false;
 
 // event listeners
 numbers.forEach(number => {
@@ -34,7 +35,9 @@ operators.forEach(operator => {
     operator.addEventListener('click', () => handleClickOperators(operator));
 })
 
-eval = _equals.addEventListener('click', () => evaluateExpression());
+_equals.addEventListener('click', () => handleClickEquals());
+
+_clear.addEventListener('click', () => clear());
 
 function add(a,b) {
     return a+b;
@@ -53,22 +56,30 @@ function divide(a,b) {
 }
 
 function operate(a,b,operator) {
-    // console.log("evaluating expression");
     switch(operator) {
         case '+':
+            // eval = true;
             return add(a,b);
         case '-':
+            // eval = true;
             return subtract(a,b);
         case 'X':
+            // eval = true;
             return multiply(a,b);
         case '/':
+            // eval = true;
             return divide(a,b);
         default:
             console.log('No operator provided');
+            return '';
     }
 } 
 
 function handleClickNumbers(number) {
+    if (eval === true) {
+        num1 = '';
+        eval = false;
+    }
     if (!op) {
         num1+= number.innerText;
         display.innerText = num1;
@@ -82,22 +93,39 @@ function handleClickNumbers(number) {
 }
 
 function handleClickOperators(operator) {
+    if (num1 && op && num2) {
+        evaluateExpression();
+    }
     op = operator.innerText;
     display.innerText += op;
     console.log(op);
+    eval = false;
+}
+
+function handleClickEquals() {
+    if (!num1 || !num2 || !op) {
+        console.log("missing operator or operand");
+        return;
+    }
+    evaluateExpression();
 }
 
 function evaluateExpression() {
     let result = operate(Number(num1), Number(num2), op);
-    display.innerText = result;
     console.log(result);
+    display.innerText = result;
+    eval = true;
     num1 = result;
     num2 = '';
     op = '';
 }
 
-function handleClick() {
-    
+function clear() {
+    num1 = '';
+    num2 = '';
+    op = '';
+    display.innerText = '';
+    eval = false;
 }
 
 // console.log(divide(1,2));
