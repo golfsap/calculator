@@ -67,16 +67,26 @@ function operate(a,b,operator) {
 } 
 
 function handleClickNumbers(number) {
-    const numFromText = number.innerText;
-    num1+= numFromText;
-    display.innerText = num1;
+    if (!op) {
+        num1+= number.innerText;
+        display.innerText = num1;
+        console.log(num1);
+    }
+    else {
+        num2+= number.innerText;
+        display.innerText = num2;
+        console.log(num2);
+    }
 }
 
 function handleClickOperators(operator) {
     op = operator.innerText;
-    // operator = operatorFromText;
+    display.innerText += op;
     console.log(op);
-    // display.innerText = num1;
+}
+
+function handleClick() {
+    
 }
 
 console.log(numbers);
