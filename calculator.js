@@ -15,6 +15,7 @@ const _multiply = document.getElementById("multiply");
 const _divide = document.getElementById("divide");
 const _equals = document.getElementById("equals");
 const _clear = document.getElementById("clear");
+const _delete = document.getElementById("delete");
 
 const display = document.getElementById("display");
 const numbers = document.querySelectorAll(".num");
@@ -82,12 +83,14 @@ function handleClickNumbers(number) {
     }
     if (!op) {
         num1+= number.innerText;
-        display.innerText = num1;
+        updateDisplay();
+        // display.innerText = num1;
         console.log(num1);
     }
     else {
         num2+= number.innerText;
-        display.innerText = num2;
+        //display.innerText += num2;
+        updateDisplay();
         console.log(num2);
     }
 }
@@ -97,7 +100,8 @@ function handleClickOperators(operator) {
         evaluateExpression();
     }
     op = operator.innerText;
-    display.innerText += op;
+    //display.innerText += op;
+    updateDisplay();
     console.log(op);
     eval = false;
 }
@@ -120,6 +124,10 @@ function evaluateExpression() {
     op = '';
 }
 
+function updateDisplay() {
+    display.innerText = `${num1}${op}${num2}`;
+}
+
 function clear() {
     num1 = '';
     num2 = '';
@@ -128,4 +136,5 @@ function clear() {
     eval = false;
 }
 
-// console.log(divide(1,2));
+// handle overflow, rounding, divide by zero
+

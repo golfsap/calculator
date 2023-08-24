@@ -29,12 +29,12 @@ body {
     align-items: center;
     font-size: 30px;
     outline: 1px solid #222;
-    height: 100px;
+    height: 130px;
 }
 
 #keypad {
     outline: 1px solid blue;
-    height: 500px;
+    height: 470px;
     display: flex;
     flex-wrap: wrap;
 }
@@ -47,5 +47,12 @@ body {
     height: 100px;
     outline: 1px solid #222;
     font-size: 30px;
+    background-color: whitesmoke;
 
+}
+
+#delete, #clear {
+    height: 70px;
+    width: 200px;
+    background-color: papayawhip;
 }
