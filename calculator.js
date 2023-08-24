@@ -13,6 +13,7 @@ const _add = document.getElementById("add");
 const _subtract = document.getElementById("subtract");
 const _multiply = document.getElementById("multiply");
 const _divide = document.getElementById("divide");
+const _equals = document.getElementById("equals");
 
 const display = document.getElementById("display");
 const numbers = document.querySelectorAll(".num");
@@ -22,7 +23,9 @@ const operators = document.querySelectorAll(".operator");
 let num1 = '';
 let num2 = '';
 let op = '';
+let eval = '';
 
+// event listeners
 numbers.forEach(number => {
     number.addEventListener('click', () => handleClickNumbers(number));
 });
@@ -30,6 +33,8 @@ numbers.forEach(number => {
 operators.forEach(operator => {
     operator.addEventListener('click', () => handleClickOperators(operator));
 })
+
+eval = _equals.addEventListener('click', () => evaluateExpression());
 
 function add(a,b) {
     return a+b;
@@ -48,19 +53,16 @@ function divide(a,b) {
 }
 
 function operate(a,b,operator) {
+    // console.log("evaluating expression");
     switch(operator) {
         case '+':
-            add(a,b);
-            break;
+            return add(a,b);
         case '-':
-            subtract(a,b);
-            break;
-        case '*':
-            multiply(a,b);
-            break;
+            return subtract(a,b);
+        case 'X':
+            return multiply(a,b);
         case '/':
-            divide(a,b);
-            break;
+            return divide(a,b);
         default:
             console.log('No operator provided');
     }
@@ -85,8 +87,17 @@ function handleClickOperators(operator) {
     console.log(op);
 }
 
+function evaluateExpression() {
+    let result = operate(Number(num1), Number(num2), op);
+    display.innerText = result;
+    console.log(result);
+    num1 = result;
+    num2 = '';
+    op = '';
+}
+
 function handleClick() {
     
 }
 
-console.log(numbers);
+// console.log(divide(1,2));
