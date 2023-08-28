@@ -2,6 +2,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Inconsolata', monospace;
+    /* font-weight: 400; */
 }
 
 body {
@@ -9,6 +11,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-color: #222;
     color: #222;
     position: relative;
     min-height: 100vh;
@@ -21,6 +24,7 @@ body {
     padding: 0;
     display: flex;
     flex-direction: column;
+    outline: 2px solid black;
 }
 
 #display {
@@ -30,10 +34,11 @@ body {
     font-size: 30px;
     outline: 1px solid #222;
     height: 130px;
+    background-color: white;
 }
 
 #keypad {
-    outline: 1px solid blue;
+    /* outline: 1px solid blue; */
     height: 470px;
     display: flex;
     flex-wrap: wrap;
@@ -45,14 +50,60 @@ body {
     align-items: center;
     width: 100px;
     height: 100px;
-    outline: 1px solid #222;
+    /* outline: 1px solid #222; */
     font-size: 30px;
     background-color: whitesmoke;
 
 }
 
+.num {
+    background-color: #e9edee;
+}
+
+.num:hover {
+    background-color: #dddddd;
+}
+
+.num:active {
+    background-color: #ddddddbb;
+}
+
+.operator {
+    background-color: #222;
+    color: white;
+}
+
+.operator:hover {
+    color: aquamarine;
+}
+
+.operator:active {
+    background-color: #181818;
+}
+
 #delete, #clear {
     height: 70px;
     width: 200px;
-    background-color: papayawhip;
+    background-color: #222;
+    color: white;
+}
+
+#delete:hover, #clear:hover {
+    color: aquamarine;
+}
+
+#delete:active, #clear:active {
+    background-color: #181818;
+}
+
+#equals {
+    background-color: #f47206;
+}
+
+#equals:hover {
+    color: aquamarine;
+}
+
+#equals:active {
+    background-color: #fc4b00;
 }
