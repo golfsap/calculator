@@ -64,9 +64,9 @@ body {
     background-color: #dddddd;
 }
 
-.num:active {
+/* .num:active {
     background-color: #ddddddbb;
-}
+} */
 
 .operator {
     background-color: #222;
@@ -104,6 +104,6 @@ body {
     color: aquamarine;
 }
 
-#equals:active {
+/* #equals:active {
     background-color: #fc4b00;
-}
+} */

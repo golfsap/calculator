@@ -85,18 +85,21 @@ function handleClickNumbers(number) {
         num1+= number.innerText;
         updateDisplay();
         // display.innerText = num1;
-        console.log(num1);
+        console.log('Num1: '+ num1);
     }
     else {
         num2+= number.innerText;
         //display.innerText += num2;
         updateDisplay();
-        console.log(num2);
+        console.log('Num2: '+ num2);
     }
 }
 
 function handleClickOperators(operator) {
-    if (num1 && op && num2) {
+    if (!num1) {
+        num1 = '0';
+    }
+    else if (num1 && op && num2) {
         evaluateExpression();
     }
     op = operator.innerText;
@@ -107,7 +110,11 @@ function handleClickOperators(operator) {
 }
 
 function handleClickEquals() {
-    if (!num1 || !num2 || !op) {
+    if (op === '/' && num2 === '0') {
+        alert("Cannot divide by zero");
+        return;
+    }
+    else if (!num1 || !num2 || !op) {
         console.log("missing operator or operand");
         return;
     }
@@ -117,7 +124,9 @@ function handleClickEquals() {
 function evaluateExpression() {
     let result = operate(Number(num1), Number(num2), op);
     console.log(result);
-    display.innerText = result;
+    updateDisplay();
+    display.innerText += ` = ${result}`;
+    // display.innerText = Math.round(result*10000)/10000;
     eval = true;
     num1 = result;
     num2 = '';
@@ -125,7 +134,7 @@ function evaluateExpression() {
 }
 
 function updateDisplay() {
-    display.innerText = `${num1}${op}${num2}`;
+    display.innerText = `${Math.round(num1*10000)/10000}${op}${num2}`;
 }
 
 function clear() {
@@ -136,5 +145,7 @@ function clear() {
     eval = false;
 }
 
-// handle overflow, rounding, divide by zero
+// function displayExpression() {
+//     console.log(`${num1}${op}${num2}`)
+// }
 
