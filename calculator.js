@@ -42,6 +42,8 @@ _equals.addEventListener('click', () => handleClickEquals());
 
 _clear.addEventListener('click', () => clear());
 
+_delete.addEventListener('click', () => handleDelete());
+
 _dot.addEventListener('click', () => addDecimal());
 
 function add(a,b) {
@@ -128,11 +130,6 @@ function handleClickEquals() {
 }
 
 function addDecimal() {
-    // if (num1 === '') {
-    //     num1 = '0';
-    //     displayBottom.innerText += '0.';
-    //     num1 = displayBottom.innerText;
-    // }
     if (displayBottom.innerText.includes('.')) {
         return;
     }
@@ -170,6 +167,25 @@ function clear() {
     display.innerText = '';
     displayBottom.innerText = '';
     eval = false;
+}
+
+function handleDelete() {
+    if (!displayBottom.innerText) {
+        console.log("Empty string");
+        return;
+    }
+    else if (!op) {
+        displayBottom.innerText = displayBottom.innerText.slice(0,-1);
+        num1 = displayBottom.innerText;
+        console.log('Num1: '+ num1);
+        updateDisplay();
+    }
+    else {
+        displayBottom.innerText = displayBottom.innerText.slice(0,-1);
+        num2 = displayBottom.innerText;
+        console.log('Num2: '+ num2);
+        updateDisplay();
+    }
 }
 
 

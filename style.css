@@ -71,10 +71,6 @@ body {
 
 }
 
-/* #dot {
-    background-color: #e9edee;
-} */
-
 .num {
     background-color: #e9edee;
 }
@@ -84,6 +80,18 @@ body {
 }
 
 .num:active {
+    background-color: #ddddddbb;
+}
+
+#dot {
+    background-color: #e9edee;
+}
+
+#dot:hover {
+    background-color: #dddddd;
+}
+
+#dot:active {
     background-color: #ddddddbb;
 }
 
