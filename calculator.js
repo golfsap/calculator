@@ -17,7 +17,8 @@ const _equals = document.getElementById("equals");
 const _clear = document.getElementById("clear");
 const _delete = document.getElementById("delete");
 
-const display = document.getElementById("display");
+const display = document.getElementById("display-top");
+const displayBottom = document.getElementById("display-bottom");
 const numbers = document.querySelectorAll(".num");
 const operators = document.querySelectorAll(".operator");
 
@@ -86,12 +87,14 @@ function handleClickNumbers(number) {
         updateDisplay();
         // display.innerText = num1;
         console.log('Num1: '+ num1);
+        displayBottom.innerText = num1;
     }
     else {
         num2+= number.innerText;
         //display.innerText += num2;
         updateDisplay();
         console.log('Num2: '+ num2);
+        displayBottom.innerText = num2;
     }
 }
 
@@ -124,8 +127,9 @@ function handleClickEquals() {
 function evaluateExpression() {
     let result = operate(Number(num1), Number(num2), op);
     console.log(result);
+    displayBottom.innerText = Math.round(result*10000)/10000;
     updateDisplay();
-    display.innerText += ` = ${result}`;
+    display.innerText += `= `;
     // display.innerText = Math.round(result*10000)/10000;
     eval = true;
     num1 = result;
@@ -142,10 +146,8 @@ function clear() {
     num2 = '';
     op = '';
     display.innerText = '';
+    displayBottom.innerText = '';
     eval = false;
 }
 
-// function displayExpression() {
-//     console.log(`${num1}${op}${num2}`)
-// }
 
