@@ -16,6 +16,7 @@ const _divide = document.getElementById("divide");
 const _equals = document.getElementById("equals");
 const _clear = document.getElementById("clear");
 const _delete = document.getElementById("delete");
+const _dot = document.getElementById("dot");
 
 const display = document.getElementById("display-top");
 const displayBottom = document.getElementById("display-bottom");
@@ -40,6 +41,8 @@ operators.forEach(operator => {
 _equals.addEventListener('click', () => handleClickEquals());
 
 _clear.addEventListener('click', () => clear());
+
+_dot.addEventListener('click', () => addDecimal());
 
 function add(a,b) {
     return a+b;
@@ -122,6 +125,25 @@ function handleClickEquals() {
         return;
     }
     evaluateExpression();
+}
+
+function addDecimal() {
+    // if (num1 === '') {
+    //     num1 = '0';
+    //     displayBottom.innerText += '0.';
+    //     num1 = displayBottom.innerText;
+    // }
+    if (displayBottom.innerText.includes('.')) {
+        return;
+    }
+    else if (!op) {
+        displayBottom.innerText += '.';
+        num1 = displayBottom.innerText;
+    }
+    else {
+        displayBottom.innerText += '.';
+        num2 = displayBottom.innerText;
+    }
 }
 
 function evaluateExpression() {
