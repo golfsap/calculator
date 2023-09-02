@@ -1,18 +1,4 @@
 // UI elements
-const _0 = document.getElementById("zero");
-const _1 = document.getElementById("one");
-const _2 = document.getElementById("two");
-const _3 = document.getElementById("three");
-const _4 = document.getElementById("four");
-const _5 = document.getElementById("five");
-const _6 = document.getElementById("six");
-const _7 = document.getElementById("seven");
-const _8 = document.getElementById("eight");
-const _9 = document.getElementById("nine");
-const _add = document.getElementById("add");
-const _subtract = document.getElementById("subtract");
-const _multiply = document.getElementById("multiply");
-const _divide = document.getElementById("divide");
 const _equals = document.getElementById("equals");
 const _clear = document.getElementById("clear");
 const _delete = document.getElementById("delete");
@@ -31,11 +17,11 @@ let eval = false;
 
 // event listeners
 numbers.forEach(number => {
-    number.addEventListener('click', () => handleClickNumbers(number));
+    number.addEventListener('click', () => handleClickNumbers(number.innerText));
 });
 
 operators.forEach(operator => {
-    operator.addEventListener('click', () => handleClickOperators(operator));
+    operator.addEventListener('click', () => handleClickOperators(operator.innerText));
 })
 
 _equals.addEventListener('click', () => handleClickEquals());
@@ -45,6 +31,8 @@ _clear.addEventListener('click', () => clear());
 _delete.addEventListener('click', () => handleDelete());
 
 _dot.addEventListener('click', () => addDecimal());
+
+document.addEventListener('keydown', (e) => handleKeyboardInput(e));
 
 function add(a,b) {
     return a+b;
@@ -88,14 +76,14 @@ function handleClickNumbers(number) {
         eval = false;
     }
     if (!op) {
-        num1+= number.innerText;
+        num1+= number;
         updateDisplay();
         // display.innerText = num1;
         console.log('Num1: '+ num1);
         displayBottom.innerText = num1;
     }
     else {
-        num2+= number.innerText;
+        num2+= number;
         //display.innerText += num2;
         updateDisplay();
         console.log('Num2: '+ num2);
@@ -110,7 +98,7 @@ function handleClickOperators(operator) {
     else if (num1 && op && num2) {
         evaluateExpression();
     }
-    op = operator.innerText;
+    op = operator;
     //display.innerText += op;
     updateDisplay();
     console.log(op);
@@ -188,4 +176,17 @@ function handleDelete() {
     }
 }
 
+function handleKeyboardInput(e) {
+    if (e.key >= 0 && e.key <= 9) {
+        handleClickNumbers(e.key);
+    }
+    else if (e.key === '.') addDecimal();
+    else if (e.key === 'Backspace') handleDelete();
+    else if (e.key === '=' || e.key === 'Enter') handleClickEquals();
+    else if (e.key === 'Escape') clear();
+    else if (e.key === '/') handleClickOperators('/');
+    else if (e.key === 'x' || e.key === 'X' || e.key === '*') handleClickOperators('X');
+    else if (e.key === '-') handleClickOperators('-');
+    else if (e.key === '+') handleClickOperators('+');
+}
 
